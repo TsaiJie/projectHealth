@@ -12,29 +12,32 @@ const express = require('express');
 // const d3 = require('d3-dsv');
 //创建路由容器
 const router = express.Router();
+//当服务器运行的时候 先读取文件数据
+let dataObj = null;
+
+fs.readFile('./tnb_data.json', 'utf8',function (err, data) {
+	if (err) {
+		throw res.status(500).send('Failed to get data');
+	}
+	 dataObj = JSON.parse(data);
+	console.log(dataObj);
+});
 
 //把路由都挂载到router路由中
 router.get('/TNBData', function (req, res) {
-	fs.readFile('./tnb_data.json', 'utf8',function (err, data) {
-		if (err) {
-			throw res.status(500).send('Failed to get data');
+	if (dataObj == null) {
+		throw res.status(500).send('Failed to get data');
+	}
+	let subData = [];
+	for (let dataKey in dataObj.data) {
+		if( dataKey >= 1000){
+			break;
 		}
+		subData.push(dataObj.data[dataKey]);
+	}
 
-		let dataObj = JSON.parse(data);
-		let subData = [];
-
-		for (let dataKey in dataObj.data) {
-			if( dataKey >= 100){
-				break;
-			}
-			subData.push(dataObj.data[dataKey]);
-		}
-
-		res.status(200);
-		res.json(subData);
-
-
-	})
+	res.status(200);
+	res.json(subData);
 });
 
 //导出路由

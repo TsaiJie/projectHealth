@@ -2,6 +2,7 @@
 
 #### Description
 在 server 文件夹下 运行 npm i 然后运行 node app.js
+
 在 client 文件夹下 运行 npm i 然后运行 npm run serve
 #### Software Architecture
 Software architecture description

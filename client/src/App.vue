@@ -1,16 +1,15 @@
 <template>
   <div id="app">
+    <div class="left">
+      <div class="main">
+      </div>
 
-    <div class="Row1">
-      <div class="Row1box_1"></div>
-      <div class="Row1box_1"></div>
-      <div class="Row1box_2"></div>
+      <div class="footer">
+        <div class="footerBox"></div>
+        <parallel-chart :parallelData="chartsData.parallelData.data" class="parallel_chart"></parallel-chart>
+      </div>
     </div>
-
-    <div class="Row2">
-      <div class="Row2Box_1 "></div>
-      <parallel-chart :parallelData="chartsData.parallelData.data" class="parallel_chart"></parallel-chart>
-      <div class="Row2Box_2"></div>
+    <div class="right">
     </div>
 
   </div>
@@ -39,53 +38,63 @@
 		created: async function() {
 				await DataProxy.initChartsData(this.chartsData);
 				console.log(this.$);
+
 		},
+
 	}
 </script>
 
-<style>
-  .Row1 {
-    position: relative;
-    height: 470px;
-    padding-top: 20px;
+<style lang="less">
+
+/*为body指定高度 子元素都依赖body的高度*/
+  html,body{
+    height:100%;
+    #app {
+      height: 100%;
+      .left {
+        width: 70%;
+        height: 100%;
+        background-color: #ccc;
+        float: left;
+      }
+      .main {
+        position: relative;
+        float: left;
+        width: 100%;
+        background-color: orange;
+        height: 50%;
+      }
+      .footer {
+        position: relative;
+        float: left;
+        width: 100%;
+        background-color: #fff;
+        height: 50%;
+
+        .parallel_chart {
+          position: absolute;
+          right: 1%;
+        }
+      }
+      .right {
+        position: relative;
+        width: 30%;
+        background-color: yellowgreen;
+        height: 100%;
+        float: right;
+      }
+    }
   }
-  .Row2 {
-    width: 100%;
-    position: relative;
+
+
+
+
+
+
+
+  .footerBox {
+
   }
-  .parallel_chart {
-    position: absolute;
-    left:30%;
-  }
-  .Row1box_1 {
-    position: absolute;
-    width: 500px;
-    height: 420px;
-    left: 1%;
-    /*border: 1px black solid;*/
-    background-color: greenyellow;
-  }
-  .Row1box_2 {
-    position: absolute;
-    width: 500px;
-    height: 420px;
-    right: 1%;
-    /*border: 1px black solid;*/
-    background-color: yellowgreen;
-  }
-  .Row2Box_1 {
-    position: absolute;
-    left: 1%;
-    width: 500px;
-    height: 480px;
-    /*border: 1px black solid;*/
-    background-color: deepskyblue;
-  }
-  .Row2Box_2 {
-    position: absolute;
-    right: 1%;
-    width: 500px;
-    height: 480px;
-    background-color: orangered;
-  }
+
+
 </style>
