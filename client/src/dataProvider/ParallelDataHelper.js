@@ -7,6 +7,9 @@ export default class ParallelDataHelper {
 function ParallelDataCalc(baseData) {
 	let parallelData = [];
 	for (let baseDataIndex in baseData) {
+		if (baseDataIndex > 200) {
+			break;
+		}
 		for (let subDataIndex in baseData[baseDataIndex].infor) {
 			let data = [];
 			data.push(baseData[baseDataIndex].BH);
@@ -19,7 +22,6 @@ function ParallelDataCalc(baseData) {
 		}
 
 	}
-
-	console.log(parallelData);
+	// console.log(parallelData);
 	return parallelData;
 }

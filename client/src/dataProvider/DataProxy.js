@@ -6,9 +6,10 @@ export default class DataProxy {
 			ServerDataProvider.getTNBJson().then(
 					(response) => {
 						chartsData.baseData = response.data;
+						// console.log(chartsData);
 						// //从源数据中抽取初平行坐标需要的数据
 						chartsData.parallelData.data = ParallelDataHelper.initParallelData(chartsData.baseData);
-						console.log(chartsData);
+						// console.log(chartsData);
 					},
 					(error) => {
 						console.log('unable to get group data from sever')
