@@ -15,9 +15,15 @@ export default class DataProxy {
 						console.log('unable to get group data from sever')
 					}
 			)
-
-
 	}
+	// static  async initMapData(mapData) {
+	// 	ServerDataProvider.getMapData().then((response) => {
+	// 		console.log(response.data);
+	// 		mapData = response.data;
+	// 	},(error) => {
+	// 		console.log('unable to get group data from sever')
+	// 	})
+	// }
 
 	// static initParallelData(baseData) {
 	// 	return ParallelDataHelper.initParallelData(baseData);

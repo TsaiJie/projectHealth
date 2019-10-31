@@ -31,11 +31,10 @@
 		methods: {
 			chartInit(){
 				// 基于准备好的dom，初始化echarts实例
-        // alert("第一次进入时数组为：" + this.parallelData);
         if (this.parallelData.length === 0 ){
         	return
         }
-        console.log(this.parallelData);
+        // console.log(this.parallelData);
 				let myChart = this.$echarts.init(document.getElementById('myChart'));
 				let schema = [
 					{name: 'BH', index: 0, text: '编号'},
@@ -79,6 +78,7 @@
               },
 							data: this.parallelData,
 							smooth : 0.1,
+              color: "white"
 						}
 
 					]

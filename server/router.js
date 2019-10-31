@@ -43,6 +43,7 @@ fs.readFile('./data/TNB_FC.json', 'utf8',function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
+	// console.log(data)
 	FC_data = JSON.parse(data);
 	// console.log(FC_data["510703"]);
 });
@@ -87,6 +88,10 @@ fs.readFile('./data/TNB_ZT.json', 'utf8',function (err, data) {
 	// console.log(ZT_data["510725"]);
 });
 
+
+
+
+
 //把路由都挂载到router路由中
 router.get('/TNBData', function (req, res) {
 	if (AX_data == null) {
@@ -95,6 +100,8 @@ router.get('/TNBData', function (req, res) {
 	res.status(200);
 	res.json(AX_data["510724"]);
 });
+
+
 
 router.get('/TNB_BC', function (req, res) {
 	if (BC_data == null) {
