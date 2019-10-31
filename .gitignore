@@ -84,7 +84,7 @@ node_modules/
 jscoverage_lib/
 bower_components/
 dist/
-data/
+server/data
 
 # data
 
@@ -97,3 +97,4 @@ TNB_PW.json
 TNB_ST.json
 TNB_YX.json
 TNB_ZT.json
+server/public/
