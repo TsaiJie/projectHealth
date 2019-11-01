@@ -3,7 +3,7 @@ import ServerDataProvider from "./ServerDataProvider";
 import ParallelDataHelper from "./ParallelDataHelper";
 export default class DataProxy {
 	static async initChartsData (chartsData) {
-			ServerDataProvider.getTNBJson().then(
+			ServerDataProvider.getDefaultTNBJson().then(
 					(response) => {
 						chartsData.baseData = response.data;
 						// console.log(chartsData);
@@ -16,25 +16,7 @@ export default class DataProxy {
 					}
 			)
 	}
-	// static  async initMapData(mapData) {
-	// 	ServerDataProvider.getMapData().then((response) => {
-	// 		console.log(response.data);
-	// 		mapData = response.data;
-	// 	},(error) => {
-	// 		console.log('unable to get group data from sever')
-	// 	})
-	// }
 
-	// static initParallelData(baseData) {
-	// 	return ParallelDataHelper.initParallelData(baseData);
-	// }
 }
 
-// function f(data) {
-// 	// console.log(data)
-// 	let a=[];
-// 	for (let i=0;i<20000;i++){
-// 		a.push(data.data[i])
-// 	}
-// 	return a
-// }
+

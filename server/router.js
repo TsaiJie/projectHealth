@@ -20,7 +20,8 @@ let AX_data = null,
 		PW_data = null,
 		ST_data = null,
 		YX_data = null,
-		ZT_data = null;
+		ZT_data = null,
+		YT_data = null;
 
 
 fs.readFile('./data/TNB_AX.json', 'utf8',function (err, data) {
@@ -88,12 +89,17 @@ fs.readFile('./data/TNB_ZT.json', 'utf8',function (err, data) {
 	// console.log(ZT_data["510725"]);
 });
 
-
-
+// fs.readFile('./data/TNB_YT.json', 'utf8',function (err, data) {
+// 	if (err) {
+// 		throw res.status(500).send('Failed to get data');
+// 	}
+// 	YT_data = JSON.parse(data);
+// 	// console.log(ZT_data["510725"]);
+// });
 
 
 //把路由都挂载到router路由中
-router.get('/TNBData', function (req, res) {
+router.get('/TNB_AX', function (req, res) {
 	if (AX_data == null) {
 		throw res.status(500).send('Failed to get data');
 	}
@@ -101,24 +107,70 @@ router.get('/TNBData', function (req, res) {
 	res.json(AX_data["510724"]);
 });
 
-
-
 router.get('/TNB_BC', function (req, res) {
 	if (BC_data == null) {
 		throw res.status(500).send('Failed to get data');
 	}
-	// let subData = [];
-	// for (let dataKey in BC_data["510726"]) {
-	// 	if( dataKey >= 100){
-	// 		break;
-	// 	}
-	// 	subData.push(BC_data["510726"][dataKey]);
-	// 	// console.log(subData)
-	// }
 	res.status(200);
-	// res.json(subData);
 	res.json(BC_data["510726"])
 });
+
+router.get('/TNB_FC', function (req, res) {
+	if (FC_data == null) {
+		throw res.status(500).send('Failed to get data');
+	}
+	res.status(200);
+	res.json(FC_data["510703"]);
+});
+
+router.get('/TNB_JY', function (req, res) {
+	if (JY_data == null) {
+		throw res.status(500).send('Failed to get data');
+	}
+	res.status(200);
+	res.json(JY_data["510781"]);
+});
+
+router.get('/TNB_PW', function (req, res) {
+	if (PW_data == null) {
+		throw res.status(500).send('Failed to get data');
+	}
+	res.status(200);
+	res.json(PW_data["510727"]);
+});
+
+router.get('/TNB_ST', function (req, res) {
+	if (ST_data == null) {
+		throw res.status(500).send('Failed to get data');
+	}
+	res.status(200);
+	res.json(ST_data["510722"]);
+});
+
+router.get('/TNB_YX', function (req, res) {
+	if (YX_data == null) {
+		throw res.status(500).send('Failed to get data');
+	}
+	res.status(200);
+	res.json(YX_data["510704"]);
+});
+
+router.get('/TNB_ZT', function (req, res) {
+	if (ZT_data == null) {
+		throw res.status(500).send('Failed to get data');
+	}
+	res.status(200);
+	res.json(ZT_data["510725"]);
+});
+
+// router.get('/TNB_YT', function (req, res) {
+// 	if (YT_data == null) {
+// 		throw res.status(500).send('Failed to get data');
+// 	}
+// 	res.status(200);
+// 	res.json(YT_data["510723"]);
+// });
+
 
 
 //导出路由

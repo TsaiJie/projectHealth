@@ -11,12 +11,6 @@ Vue.prototype.mbgl = mapBoxGl;
 Vue.prototype.$echarts = echarts;
 Vue.prototype.$ = $;
 
-Vue.prototype.$chartData = {
-	baseData: {},
-	parallelData: {
-		data:[]
-	}
-};
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'bootstrap'
