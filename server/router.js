@@ -1,3 +1,4 @@
+
 // router模块
 /**
  * router.js路由模块
@@ -6,37 +7,42 @@
  * 模块职责要单一
  */
 const fs = require('fs');
-
+const ParalledDataHper = require('./dataProvider/ParalledDataHper')
 const express = require('express');
 //解析csv格式的数据
 // const d3 = require('d3-dsv');
 //创建路由容器
 const router = express.Router();
 //当服务器运行的时候 先读取文件数据
-let AX_data = null,
-		BC_data = null,
-		FC_data = null,
-		JY_data = null,
-		PW_data = null,
-		ST_data = null,
-		YX_data = null,
-		ZT_data = null,
-		YT_data = null;
+let AX_data = {},
+		BC_data = {},
+		FC_data = {},
+		JY_data = {},
+		PW_data = {},
+		ST_data = {},
+		YX_data = {},
+		ZT_data = {},
+		YT_data = {};
 
 
 fs.readFile('./data/TNB_AX.json', 'utf8',function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
-	 AX_data = JSON.parse(data);
-	// console.log(AX_data["510724"]);
+	const rawData = JSON.parse(data);
+	// AX_data = JSON.parse(data);
+	AX_data.parallel = ParalledDataHper.initParallelData(rawData["510724"]);
+
 });
 
 fs.readFile('./data/TNB_BC.json', 'utf8',function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
-	BC_data = JSON.parse(data);
+	const rawData = JSON.parse(data);
+	BC_data.parallel = ParalledDataHper.initParallelData(rawData["510726"]);
+	// console.log(BC_data);
+
 	// console.log(BC_data ["510726"]);
 });
 
@@ -44,49 +50,54 @@ fs.readFile('./data/TNB_FC.json', 'utf8',function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
-	// console.log(data)
-	FC_data = JSON.parse(data);
-	// console.log(FC_data["510703"]);
+	const rawData = JSON.parse(data);
+	FC_data.parallel = ParalledDataHper.initParallelData(rawData["510703"]);
+
 });
 
 fs.readFile('./data/TNB_JY.json', 'utf8',function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
-	JY_data = JSON.parse(data);
-	// console.log(JY_data["510781"]);
+	const rawData = JSON.parse(data);
+	JY_data.parallel = ParalledDataHper.initParallelData(rawData["510781"]);
+
 });
 
 fs.readFile('./data/TNB_PW.json', 'utf8',function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
-	PW_data = JSON.parse(data);
-	// console.log(PW_data["510727"]);
+	const rawData = JSON.parse(data);
+	PW_data.parallel = ParalledDataHper.initParallelData(rawData["510727"]);
+
 });
 
 fs.readFile('./data/TNB_ST.json', 'utf8',function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
-	ST_data = JSON.parse(data);
-	// console.log(ST_data["510722"]);
+	const rawData = JSON.parse(data);
+	ST_data.parallel = ParalledDataHper.initParallelData(rawData["510722"]);
+
 });
 
 fs.readFile('./data/TNB_YX.json', 'utf8',function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
-	YX_data = JSON.parse(data);
-	// console.log(YX_data["510704"]);
+	const rawData = JSON.parse(data);
+	YX_data.parallel = ParalledDataHper.initParallelData(rawData["510704"]);
+
 });
 
 fs.readFile('./data/TNB_ZT.json', 'utf8',function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
-	ZT_data = JSON.parse(data);
-	// console.log(ZT_data["510725"]);
+	const rawData = JSON.parse(data);
+	ZT_data.parallel = ParalledDataHper.initParallelData(rawData["510725"]);
+
 });
 
 // fs.readFile('./data/TNB_YT.json', 'utf8',function (err, data) {
@@ -104,7 +115,8 @@ router.get('/TNB_AX', function (req, res) {
 		throw res.status(500).send('Failed to get data');
 	}
 	res.status(200);
-	res.json(AX_data["510724"]);
+	res.json(AX_data);
+	// res.json(AX_data["510724"]);
 });
 
 router.get('/TNB_BC', function (req, res) {
@@ -112,7 +124,9 @@ router.get('/TNB_BC', function (req, res) {
 		throw res.status(500).send('Failed to get data');
 	}
 	res.status(200);
-	res.json(BC_data["510726"])
+	// console.log(BC_data)
+	res.json(BC_data);
+	// res.json(BC_data["510726"])
 });
 
 router.get('/TNB_FC', function (req, res) {
@@ -120,7 +134,7 @@ router.get('/TNB_FC', function (req, res) {
 		throw res.status(500).send('Failed to get data');
 	}
 	res.status(200);
-	res.json(FC_data["510703"]);
+	res.json(FC_data);
 });
 
 router.get('/TNB_JY', function (req, res) {
@@ -128,7 +142,7 @@ router.get('/TNB_JY', function (req, res) {
 		throw res.status(500).send('Failed to get data');
 	}
 	res.status(200);
-	res.json(JY_data["510781"]);
+	res.json(JY_data);
 });
 
 router.get('/TNB_PW', function (req, res) {
@@ -136,7 +150,7 @@ router.get('/TNB_PW', function (req, res) {
 		throw res.status(500).send('Failed to get data');
 	}
 	res.status(200);
-	res.json(PW_data["510727"]);
+	res.json(PW_data);
 });
 
 router.get('/TNB_ST', function (req, res) {
@@ -144,7 +158,7 @@ router.get('/TNB_ST', function (req, res) {
 		throw res.status(500).send('Failed to get data');
 	}
 	res.status(200);
-	res.json(ST_data["510722"]);
+	res.json(ST_data);
 });
 
 router.get('/TNB_YX', function (req, res) {
@@ -152,7 +166,7 @@ router.get('/TNB_YX', function (req, res) {
 		throw res.status(500).send('Failed to get data');
 	}
 	res.status(200);
-	res.json(YX_data["510704"]);
+	res.json(YX_data);
 });
 
 router.get('/TNB_ZT', function (req, res) {
@@ -160,7 +174,7 @@ router.get('/TNB_ZT', function (req, res) {
 		throw res.status(500).send('Failed to get data');
 	}
 	res.status(200);
-	res.json(ZT_data["510725"]);
+	res.json(ZT_data);
 });
 
 // router.get('/TNB_YT', function (req, res) {

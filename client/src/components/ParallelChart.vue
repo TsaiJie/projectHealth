@@ -101,6 +101,7 @@
         if (this.parallelData.length === 0 ){
         	return
         }
+
 				let myChart = this.$echarts.init(document.getElementById('myChart'));
 				let schema = [
 					{name: 'BH', index: 0, text: '编号'},

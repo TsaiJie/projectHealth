@@ -1,15 +1,16 @@
-export default class ParallelDataHelper {
+class ParallelDataHelper {
 	static initParallelData(baseData) {
 		return ParallelDataCalc(baseData);
 	}
 }
 
 function ParallelDataCalc(baseData) {
+	// console.log(baseData);
 	let parallelData = [];
 	for (let baseDataIndex in baseData) {
-		if (baseDataIndex > 300) {
-			break;
-		}
+		// if (baseDataIndex > 300) {
+		// 	break;
+		// }
 		for (let subDataIndex in baseData[baseDataIndex].infor) {
 			let data = [];
 			// data["编号"] = baseData[baseDataIndex].BH;
@@ -32,3 +33,7 @@ function ParallelDataCalc(baseData) {
 	// console.log(parallelData);
 	return parallelData;
 }
+
+
+
+module.exports = ParallelDataHelper;

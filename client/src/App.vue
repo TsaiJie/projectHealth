@@ -30,13 +30,14 @@
 	import DataProxy from "./dataProvider/DataProxy";
   import ParallelChart from "./components/ParallelChart";
   import MapBoxGlChart from "./components/MapBoxGlChart";
+  import pubSub from "pubsub-js"
   // import $ from "jQuery"
 	export default {
 		name: 'app',
 		data() {
 			return {
 				chartsData: {
-					baseData: {},
+					// baseData: {},
 					parallelData: {
 						data:[]
           }
@@ -50,7 +51,20 @@
 			MapBoxGlChart
 		},
 		created: async function() {
-				await DataProxy.initChartsData(this.chartsData);
+      await DataProxy.initChartsData(this.chartsData);
+			  // pubSub.subscribe('data_PW', (dataName,data) => {
+			  // 	console.log(dataName);
+			  // 	console.log(data);
+        // })
+       DataProxy.getDataPW(this.chartsData);
+       DataProxy.getDataBC(this.chartsData);
+       DataProxy.getDataJY(this.chartsData);
+       DataProxy.getDataFC(this.chartsData);
+       DataProxy.getDataST(this.chartsData);
+       DataProxy.getDataZT(this.chartsData);
+       DataProxy.getDataYX(this.chartsData);
+       DataProxy.getDataAX(this.chartsData);
+
 		},
 
 	}

@@ -6,6 +6,8 @@
 	import ServerDataProvider from "../dataProvider/ServerDataProvider";
 	import * as d3 from 'd3';
 	import axios from 'axios';
+	import pubSub from 'pubsub-js';
+
 	export default {
 		name: "MapBoxGlChart",
 		mounted(){
@@ -56,7 +58,6 @@
                     communities[j].style.transition = "0.9s";
                     communities[j].style.fill = "#aaa";
                   }
-                  console.log(d);
                   this.getCurrentAreaJsonData(d);
                 });
 					//添加文字
@@ -80,32 +81,38 @@
 				switch (Georoot.properties.name) {
           case "平武县":
           	ServerDataProvider.getPWJson().then(response => {
-          	  console.log(response.data)
+          		pubSub.publish('data_PW',response.data);
+          	  // console.log(response.data)
             });
           	break;
           case "北川羌族自治县":
           	ServerDataProvider.getBCJson().then(response => {
-          		console.log(response.data);
+							pubSub.publish('data_BC',response.data);
+          		// console.log(response.data);
             });
             break;
 					case "江油市":
 						ServerDataProvider.getJYJson().then(response => {
-							console.log(response.data);
+							pubSub.publish('data_JY',response.data);
+							// console.log(response.data);
 						});
 						break;
 					case "梓潼县":
 						ServerDataProvider.getZTJson().then(response => {
-							console.log(response.data);
+							pubSub.publish('data_ZT',response.data);
+							// console.log(response.data);
 						});
 						break;
 					case "游仙区":
 						ServerDataProvider.getYXJson().then(response => {
-							console.log(response.data);
+							pubSub.publish('data_YX',response.data);
+							// console.log(response.data);
 						});
 						break;
 					case "涪城区":
 						ServerDataProvider.getFCJson().then(response => {
-							console.log(response.data);
+							pubSub.publish('data_FC',response.data);
+							// console.log(response.data);
 						});
 						break;
 					// case "盐亭县":
@@ -115,15 +122,16 @@
 					// 	break;
 					case "三台县":
 						ServerDataProvider.getSTJson().then(response => {
-							console.log(response.data);
+							pubSub.publish('data_ST',response.data);
+							// console.log(response.data);
 						});
 						break;
 					case "安县":
 						ServerDataProvider.getAXJson().then(response => {
-							console.log(response.data);
+							pubSub.publish('data_AX',response.data);
+							// console.log(response.data);
 						});
 						break;
-
 				}
       }
 		}
