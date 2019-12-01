@@ -23,7 +23,7 @@
       //  定义地图的投影
         let projection = d3.geoMercator()
                           .center([105,30])
-                          .scale(10000)
+                          .scale(10200)
                           .translate([width/2, height/0.95]);
 
       //  定义地理路径生成器

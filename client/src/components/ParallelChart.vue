@@ -13,7 +13,8 @@
 		name: "ParallelChart",
 		data () {
 			return {
-				msg: 'Welcome to ParallelChart'
+				msg: 'Welcome to ParallelChart',
+        myChart:{}
 			}
 		},
     props:{
@@ -23,6 +24,8 @@
     },
     watch:{
 			parallelData(val){
+				console.log(this.parallelData)
+        this.myChart.dispose();
 				this.chartInit();
       }
     },
@@ -98,17 +101,18 @@
 
 			chartInit(){
 				// 基于准备好的dom，初始化echarts实例
-        if (this.parallelData.length === 0 ){
-        	return
-        }
+        // if (this.parallelData.length === 0 ){
+				// 	return
+				// }
 
-				let myChart = this.$echarts.init(document.getElementById('myChart'));
+				this.myChart = this.$echarts.init(document.getElementById('myChart'));
+
 				let schema = [
-					{name: 'BH', index: 0, text: '编号'},
-					{name: 'RXYL', index: 1, text: '日吸烟量'},
-					{name: 'RYJL', index: 2, text: '日饮酒量'},
-					{name: 'YDC', index: 3, text: '运动（次）'},
-					{name: 'KFXTZ', index: 4, text: '空腹血糖值'},
+					// {name: 'BH', index: 0, text: '编号'},
+					{name: 'RXYL', index: 0, text: '日吸烟量'},
+					{name: 'RYJL', index: 1, text: '日饮酒量'},
+					{name: 'YDC', index: 2, text: '运动（次）'},
+					{name: 'KFXTZ', index: 3, text: '空腹血糖值'},
 				];
 
 				let lineStyle = {
@@ -118,19 +122,19 @@
 					}
 				};
 				// 绘制图表
-				myChart.setOption({
+				this.myChart.setOption({
 					color: [
 						 '#91c7ae',
 					],
 					parallelAxis: [
-						{dim: 0, name: schema[0].text, type: 'category',axisLabel:"false"},
+						// {dim: 0, name: schema[0].text, type: 'category',axisLabel:"false"},
+						{dim: 0, name: schema[0].text},
 						{dim: 1, name: schema[1].text},
 						{dim: 2, name: schema[2].text},
 						{dim: 3, name: schema[3].text},
-						{dim: 4, name: schema[4].text},
 					],
 					parallel: {
-						left: '3%',
+						left: '4%',
 						right: '5%',
 						bottom: '4%',
 						top: '10%',

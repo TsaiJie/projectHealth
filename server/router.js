@@ -91,7 +91,7 @@ fs.readFile('./data/TNB_YX.json', 'utf8',function (err, data) {
 
 });
 
-fs.readFile('./data/TNB_ZT.json', 'utf8',function (err, data) {
+fs.readFile('./data/TNB_ZT.json', 'utf8', function (err, data) {
 	if (err) {
 		throw res.status(500).send('Failed to get data');
 	}
